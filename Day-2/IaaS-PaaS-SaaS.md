@@ -57,6 +57,16 @@
 
 ---
 
+## 🎯 Interview One-Liners
+
+| Model | One-Liner |
+| ----- | --------- |
+| **IaaS** | "You control infrastructure" |
+| **PaaS** | "You focus on code" |
+| **SaaS** | "You just use the software" |
+
+---
+
 ## 🎯 Quick Memory Shortcuts
 
 | Model | Remember This                                    |
