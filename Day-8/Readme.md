@@ -414,11 +414,13 @@ Table = NoSQL Database
 
 ## Interview Checklist
 
+```
 ✅ Blob Storage = Object storage for unstructured data
 ✅ Storage Account = Container for all storage services
 ✅ Access Levels = Private, Blob, Container
 ✅ Storage Tiers = Hot, Cool, Archive
 ✅ Redundancy = LRS, ZRS, GRS, RA-GRS
 ✅ Types = 5 different storage types with different use cases
+```
 
 ---
