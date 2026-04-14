@@ -2,6 +2,81 @@
 
 ---
 
+# 🎨 Visual Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                     🔒 AZURE VNET (Secure Housing Society)             │
+│                                                                         │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐    │
+│  │ 🏢 Building A    │  │ 🏢 Building B    │  │ 🏢 Building C    │    │
+│  │ (Web Subnet)     │  │ (App Subnet)     │  │ (DB Subnet)      │    │
+│  │                  │  │                  │  │                  │    │
+│  │ ┌──────────────┐ │  │ ┌──────────────┐ │  │ ┌──────────────┐ │    │
+│  │ │ 🏠 VM1       │ │  │ │ 🏠 VM3       │ │  │ │ 🏠 DB VM     │ │    │
+│  │ │ (10.0.1.4)   │ │  │ │ (10.0.2.4)   │ │  │ │ (10.0.3.4)   │ │    │
+│  │ └──────────────┘ │  │ └──────────────┘ │  │ └──────────────┘ │    │
+│  │ ┌──────────────┐ │  │ ┌──────────────┐ │  │                  │    │
+│  │ │ 🏠 VM2       │ │  │ │ 🏠 VM4       │ │  │ ┌──────────────┐ │    │
+│  │ │ (10.0.1.5)   │ │  │ │ (10.0.2.5)   │ │  │ │ 📊 Replica   │ │    │
+│  │ └──────────────┘ │  │ └──────────────┘ │  │ │ (10.0.3.5)   │ │    │
+│  │                  │  │                  │  │ └──────────────┘ │    │
+│  └──────────────────┘  └──────────────────┘  └──────────────────┘    │
+│         ▲                     ▲                       ▲                │
+│         │ NSG Rules           │ NSG Rules            │ NSG Rules      │
+│         │ (Guard)             │ (Guard)              │ (Guard)        │
+│         └─────────────────────┴───────────────────────┘                │
+│                               │                                       │
+│  ┌────────────────────────────────────────────────────┐               │
+│  │   🛑 NSG (Main Security Rules)                     │               │
+│  │  Allow HTTP/HTTPS In                              │               │
+│  │  Allow Inter-subnet communication                 │               │
+│  │  Deny everything else                             │               │
+│  └────────────────────────────────────────────────────┘               │
+│                               │                                       │
+│  ┌────────────────────────────────────────────────────┐               │
+│  │   🔥 Azure Firewall (Deep Inspection)              │               │
+│  │   Checks all traffic rules, DDoS, threats         │               │
+│  └────────────────────────────────────────────────────┘               │
+│                               │                                       │
+└───────────────────────────────┼───────────────────────────────────────┘
+                                │
+                    ┌───────────┴───────────┐
+                    │                       │
+            ┌───────▼────────┐     ┌───────▼────────┐
+            │  🚪 Public IP  │     │ 🔐 VPN Gateway │
+            │(Main Gate)     │     │ (Private Tunnel)
+            │ 20.XX.XX.XX    │     │ (Trusted Entry)
+            └────────────────┘     └────────────────┘
+                    │                       │
+                    │        ┌──────────────┘
+                    │        │
+            ┌───────▼────────▼──────┐
+            │   🚦 Load Balancer    │
+            │ (Traffic Distribution)│
+            └───────┬────────┬──────┘
+                    │        │
+        ┌───────────┘        └───────────┐
+        │                                │
+    From Web              From External
+    Visitors              Connections
+
+┌─────────────────────────────────────────┐
+│    🧑‍✈️ BASTION HOST                      │
+│  (Secure Management Access)             │
+│  - No Public IP on VMs                  │
+│  - RDP/SSH through Bastion only         │
+│  - All connections logged               │
+└─────────────────────────────────────────┘
+
+┌─────────────────────────────────────────┐
+│    🚨 DDoS PROTECTION                   │
+│  (Crowd Control - Stops bulk attacks)  │
+└─────────────────────────────────────────┘
+```
+
+---
+
 # 🧠 Full Mapping (Azure → Real World)
 
 | Azure Concept           | Society Example         | Explanation                            |
@@ -18,6 +93,73 @@
 | **VPN Gateway**         | 🔐 Private Tunnel       | Secure entry for trusted people        |
 | **Bastion**             | 🧑‍✈️ Security Cabin    | Secure access without exposing inside  |
 | **DDoS Protection**     | 🚨 Crowd Control        | Stops attack/too many visitors         |
+
+---
+
+# 🌐 Traffic Flow Diagram (How Data Moves)
+
+```
+EXTERNAL VISITOR (Internet Traffic)
+         │
+         │ HTTP/HTTPS Request
+         ▼
+    ┌─────────────┐
+    │ DDoS Check  │  ← Stops massive attacks
+    │ (Threshold) │
+    └──────┬──────┘
+           │
+           ▼
+    ┌─────────────────────────┐
+    │  Public IP (Gate)       │  ← Entry Point
+    │  20.XX.XX.XX:80/443     │
+    └──────┬──────────────────┘
+           │
+           ▼
+    ┌────────────────────────┐
+    │ Load Balancer          │  ← Distributes Traffic
+    │ (Traffic Cop)          │
+    └──┬───────────┬─────────┘
+       │           │
+       ▼           ▼
+  ┌────────┐  ┌────────┐
+  │  VM1   │  │  VM2   │  ← Web Servers (Building A)
+  │10.0.1.4│  │10.0.1.5│
+  └────────┘  └────────┘
+       │           │
+       └─────┬─────┘
+           ▼
+    ┌─────────────────────────┐
+    │  NSG Rules Check        │  ← Security Guard
+    │  (Allow/Deny)           │
+    └──────┬──────────────────┘
+           │
+           ▼
+    ┌────────────────────────────┐
+    │ Application Gateway/        │  ← Smart Gate
+    │ Firewall (Deep Inspection)  │  (Protocol check, WAF rules)
+    └──────┬─────────────────────┘
+           │
+           ▼
+    ┌────────────────────────────┐
+    │ Application Layer          │   ← Inside Society
+    │ (App Servers)              │   (Building B)
+    │ 10.0.2.4 / 10.0.2.5        │
+    └────────┬───────────────────┘
+             │
+             ▼
+    ┌────────────────────────────┐
+    │ Database Layer             │   ← Inside Society
+    │ (Building C)               │   (Only other servers)
+    │ 10.0.3.4 / 10.0.3.5        │
+    └────────────────────────────┘
+
+
+INTERNAL TRAFFIC (Building-to-Building):
+VNet Internal → NSG Check → Direct (No Public IP needed)
+
+VPN TUNNEL (Trusted Remote Office):
+Remote Office → VPN Gateway → Private Tunnel → Inside VNet
+```
 
 ---
 
