@@ -12,21 +12,43 @@
 
 ## Azure Storage Overview
 
-Azure Storage is a cloud service that provides scalable, secure, and durable storage for files, objects, disks, messages, and tables.
+**Azure Storage** is a cloud service that provides scalable, secure, and durable storage for files, objects, disks, messages, and tables.
 
-## Storage Account
+### Storage Account
 
-All Azure storage services are created inside a Storage Account.
+All Azure storage services are created inside a **Storage Account**.
 
 Key points:
 
-- General Purpose v2 is the most commonly used account type
+- General Purpose v2 is the most used account type
 - Blob Storage account is used for blob-centric scenarios
 - Storage account names must be globally unique and lowercase
 
----
+### Performance Tiers
 
-## Quick Comparison
+| Tier | Use |
+| --- | --- |
+| Hot | Frequent access |
+| Cool | Less frequent access |
+| Archive | Rare access |
+
+### Security Features
+
+- Encryption at rest and in transit
+- Access keys and SAS tokens
+- RBAC integration
+- Private endpoints
+
+### Redundancy Options
+
+| Type | Description |
+| --- | --- |
+| LRS | Local redundancy |
+| ZRS | Zone redundancy |
+| GRS | Geo redundancy |
+| RA-GRS | Read access geo redundancy |
+
+### Quick Comparison
 
 | Type | Data | Use |
 | --- | --- | --- |
@@ -36,30 +58,19 @@ Key points:
 | Queue | Messages | Async tasks |
 | Table | NoSQL | Logs, metadata |
 
-## Performance Tiers
+### Real Project Example
 
-| Tier | Use |
-| --- | --- |
-| Hot | Frequent access |
-| Cool | Less frequent access |
-| Archive | Rare access |
+E-commerce app:
 
-## Security Features
+- Images -> Blob Storage
+- VM OS -> Disk Storage
+- Shared files -> File Storage
+- Order queue -> Queue Storage
+- Logs -> Table Storage
 
-- Encryption at rest and in transit
-- Access keys and SAS tokens
-- RBAC integration
-- Private endpoints
-- Secure transfer required
+### Interview One-Liner
 
-## Redundancy Options
-
-| Type | Description |
-| --- | --- |
-| LRS | Local redundancy |
-| ZRS | Zone redundancy |
-| GRS | Geo redundancy |
-| RA-GRS | Read access geo redundancy |
+Azure Storage provides scalable and secure storage solutions like Blob, Disk, File, Queue, and Table for different types of data and workloads.
 
 ---
 
@@ -123,7 +134,7 @@ To upload a file:
 
 ## Part 4: Create Queue Storage
 
-Use Queue Storage for message queues and async processing.
+Use Queue Storage for message queue and async processing.
 
 ### Queue Storage Steps
 
@@ -154,13 +165,15 @@ Use Table Storage for NoSQL data.
 To add data:
 
 - Open table -> Add entity
-- Add PartitionKey, RowKey, and Properties
+- Add PartitionKey
+- Add RowKey
+- Add Properties
 
 ---
 
 ## Part 6: Create Disk Storage (VM Disk)
 
-Disk Storage is created with a VM.
+Disk is created with the VM.
 
 ### Disk Storage Steps
 
@@ -172,7 +185,7 @@ Disk Storage is created with a VM.
    - OS Disk type -> SSD or HDD
 5. Click Create VM
 
-To add a data disk:
+To add a Data Disk:
 
 - Go to VM -> Disks -> + Add Data Disk -> Save
 
@@ -188,16 +201,6 @@ To add a data disk:
 | Queue | Messages |
 | Table | NoSQL data |
 
-## Real Example
-
-E-commerce app:
-
-- Product images -> Blob
-- Shared files -> File
-- VM OS -> Disk
-- Orders -> Queue
-- User data -> Table
-
 ## Final Flow
 
 ```text
@@ -208,10 +211,6 @@ Storage Account
   -> Table (NoSQL)
   -> Disk (VM)
 ```
-
-## Interview One-Liner
-
-A Storage Account in Azure hosts multiple storage services like Blob, File, Queue, Table, and Disk, each used for different data storage needs.
 
 ## Quick Revision
 
