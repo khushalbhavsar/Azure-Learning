@@ -2,7 +2,7 @@
 
 ---
 
-# 🎨 Mermaid Architecture Diagram
+# 🎨 Architecture Diagram
 
 ```mermaid
 graph TB
@@ -62,7 +62,7 @@ graph TB
 
 ---
 
-# 🌐 Mermaid Traffic Flow Diagram
+# 🌐 Traffic Flow Diagram
 
 ```mermaid
 flowchart TD
@@ -111,7 +111,7 @@ flowchart TD
 
 ---
 
-# 🔐 Mermaid Security Layers Diagram
+# 🔐 Security Layers Diagram
 
 ```mermaid
 graph TD
@@ -171,7 +171,7 @@ graph TD
 
 ---
 
-# 📊 Mermaid NSG Rules Diagram
+# 📊 NSG Rules Diagram
 
 ```mermaid
 graph LR
@@ -225,7 +225,7 @@ graph LR
 
 ---
 
-# 🔄 Mermaid Sequence Diagram - Complete Request Flow
+# 🔄 Sequence Diagram - Complete Request Flow
 
 ```mermaid
 sequenceDiagram
@@ -268,7 +268,7 @@ sequenceDiagram
 
 ---
 
-# 🏗️ Mermaid 3-Tier Architecture Pattern
+# 🏗️ 3-Tier Architecture Pattern
 
 ```mermaid
 graph TB
