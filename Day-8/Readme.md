@@ -422,10 +422,3 @@ Table = NoSQL Database
 ✅ Types = 5 different storage types with different use cases
 
 ---
-
-## 🎯 Next Topics
-
-- **Blob vs File Storage vs Disk** (Very important)
-- **How to host static website using Blob Storage**
-- **SAS Token and Security**
-- **Storage Account Keys and Access**
