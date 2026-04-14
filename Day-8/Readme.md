@@ -1,203 +1,224 @@
-# 💾 What is Azure Storage?
+# Day 8: Azure Storage
 
+## Topics
 
-### ✅ Definition
-
-**Azure Storage** is a cloud service that provides **scalable, secure, and durable storage** for data such as files, objects, disks, messages, and tables.
-
----
-
-# 🧩 Types of Azure Storage Services
-
----
-
-## 📦 1️⃣ Blob Storage (Object Storage)
-
-👉 Azure Blob Storage
-
-### 🔹 What it is
-
-* Stores **unstructured data** (images, videos, backups)
-
-### 🔹 Features
-
-* Highly scalable
-* Accessible via HTTP/HTTPS
-* Supports containers
-
-### 🔹 Use Cases
-
-* Website images/videos
-* Backup & restore
-* Big data storage
+- [Blob Storage](Blob%20Storage%20(Object%20Storage).md)
+- [Disk Storage](Disk%20Storage.md)
+- [File Storage](File%20Storage.md)
+- [Queue Storage](Queue%20Storage.md)
+- [Table Storage](Table%20Storage.md)
 
 ---
 
-## 💽 2️⃣ Disk Storage
+## Azure Storage Overview
 
-👉 Azure Disk Storage
+Azure Storage is a cloud service that provides scalable, secure, and durable storage for files, objects, disks, messages, and tables.
 
-### 🔹 What it is
+## Storage Account
 
-* Storage for **Virtual Machines (VMs)**
+All Azure storage services are created inside a Storage Account.
 
-### 🔹 Types
+Key points:
 
-* Standard HDD
-* Standard SSD
-* Premium SSD
-
-### 🔹 Use Cases
-
-* OS disk for VM
-* Database storage
-* High-performance apps
+- General Purpose v2 is the most commonly used account type
+- Blob Storage account is used for blob-centric scenarios
+- Storage account names must be globally unique and lowercase
 
 ---
 
-## 📁 3️⃣ File Storage
+## Quick Comparison
 
-👉 Azure File Storage
+| Type | Data | Use |
+| --- | --- | --- |
+| Blob | Unstructured | Media, backup |
+| Disk | VM storage | OS, DB |
+| File | Shared files | File sharing |
+| Queue | Messages | Async tasks |
+| Table | NoSQL | Logs, metadata |
 
-### 🔹 What it is
+## Performance Tiers
 
-* Managed **file shares in cloud**
+| Tier | Use |
+| --- | --- |
+| Hot | Frequent access |
+| Cool | Less frequent access |
+| Archive | Rare access |
 
-### 🔹 Features
+## Security Features
 
-* Access via SMB/NFS
-* Shared across multiple VMs
+- Encryption at rest and in transit
+- Access keys and SAS tokens
+- RBAC integration
+- Private endpoints
+- Secure transfer required
 
-### 🔹 Use Cases
+## Redundancy Options
 
-* Shared folders
-* Lift-and-shift apps
-* Backup storage
-
----
-
-## 📬 4️⃣ Queue Storage
-
-👉 Azure Queue Storage
-
-### 🔹 What it is
-
-* Stores **messages between services**
-
-### 🔹 Features
-
-* Decouples applications
-* Supports async processing
-
-### 🔹 Use Cases
-
-* Background jobs
-* Order processing systems
-* Microservices communication
+| Type | Description |
+| --- | --- |
+| LRS | Local redundancy |
+| ZRS | Zone redundancy |
+| GRS | Geo redundancy |
+| RA-GRS | Read access geo redundancy |
 
 ---
 
-## 📊 5️⃣ Table Storage
+## Part 1: Create Storage Account
 
-👉 Azure Table Storage
+### Step 1: Go to Azure Portal
 
-### 🔹 What it is
+- Open portal.azure.com
+- Search Storage Accounts -> + Create
 
-* NoSQL key-value storage
+### Step 2: Fill Basics
 
-### 🔹 Features
+- Resource Group -> `myRG`
+- Storage Account Name -> `mystorage123`
+- Region -> Central India
+- Performance -> Standard
+- Redundancy -> LRS
 
-* Schema-less
-* Fast access
+Click Review + Create -> Create.
 
-### 🔹 Use Cases
-
-* Logs
-* Metadata storage
-* IoT data
-
----
-
-# 🧠 Storage Account (Important 🔥)
-
-👉 All storage services are created inside a **Storage Account**
-
-### 🔑 Types:
-
-* General Purpose v2 (most used)
-* Blob Storage account
+### Storage Account Created
 
 ---
 
-# ⚡ Performance Tiers
+## Part 2: Create Blob Storage (Object Storage)
 
-| Tier    | Use             |
-| ------- | --------------- |
-| Hot     | Frequent access |
-| Cool    | Less frequent   |
-| Archive | Rare access     |
+Use Blob Storage for images, videos, and backups.
 
----
+### Blob Storage Steps
 
-# 🔐 Security Features
+1. Go to Storage Account -> Data Storage -> Containers
+2. Click + Container
+3. Enter:
+   - Name -> `images`
+   - Access level -> Private / Blob
+4. Click Create
 
-1. Encryption (at rest + in transit)
-2. Access keys & SAS tokens
-3. RBAC integration
-4. Private endpoints
+To upload a file:
 
----
-
-# 🌍 Redundancy Options
-
-| Type   | Description      |
-| ------ | ---------------- |
-| LRS    | Local redundancy |
-| ZRS    | Zone redundancy  |
-| GRS    | Geo redundancy   |
-| RA-GRS | Read access geo  |
+- Open container -> Upload -> Select file -> Upload
 
 ---
 
-# 📊 Quick Comparison
+## Part 3: Create File Storage (File Share)
 
-| Type  | Data         | Use            |
-| ----- | ------------ | -------------- |
-| Blob  | Unstructured | Media, backup  |
-| Disk  | VM storage   | OS, DB         |
-| File  | Shared files | File sharing   |
-| Queue | Messages     | Async tasks    |
-| Table | NoSQL        | Logs, metadata |
+Use File Storage for shared folders.
 
----
+### File Storage Steps
 
-# 🎯 Real Project Example
+1. Go to Storage Account -> File Shares
+2. Click + File Share
+3. Enter:
+   - Name -> `sharedfiles`
+4. Click Create
 
-👉 E-commerce App:
+To upload a file:
 
-* Images → Blob Storage
-* VM OS → Disk Storage
-* Shared files → File Storage
-* Order queue → Queue Storage
-* Logs → Table Storage
+- Open share -> Upload file
 
 ---
 
-# 🎯 Interview One-Liner
+## Part 4: Create Queue Storage
 
-👉 **Azure Storage provides scalable and secure storage solutions like Blob, Disk, File, Queue, and Table for different types of data and workloads.**
+Use Queue Storage for message queues and async processing.
+
+### Queue Storage Steps
+
+1. Go to Storage Account -> Queues
+2. Click + Queue
+3. Enter:
+   - Name -> `orderqueue`
+4. Click Create
+
+To add a message:
+
+- Open queue -> Add message -> Enter text -> OK
 
 ---
 
-# 🚀 Quick Revision
+## Part 5: Create Table Storage
+
+Use Table Storage for NoSQL data.
+
+### Table Storage Steps
+
+1. Go to Storage Account -> Tables
+2. Click + Table
+3. Enter:
+   - Name -> `users`
+4. Click Create
+
+To add data:
+
+- Open table -> Add entity
+- Add PartitionKey, RowKey, and Properties
+
+---
+
+## Part 6: Create Disk Storage (VM Disk)
+
+Disk Storage is created with a VM.
+
+### Disk Storage Steps
+
+1. Go to Virtual Machines -> + Create
+2. Select:
+   - Image -> Ubuntu or Windows
+3. Go to Disks tab
+4. Choose:
+   - OS Disk type -> SSD or HDD
+5. Click Create VM
+
+To add a data disk:
+
+- Go to VM -> Disks -> + Add Data Disk -> Save
+
+---
+
+## Summary of Use
+
+| Storage Type | Use |
+| --- | --- |
+| Blob | Images, videos |
+| File | Shared folders |
+| Disk | VM storage |
+| Queue | Messages |
+| Table | NoSQL data |
+
+## Real Example
+
+E-commerce app:
+
+- Product images -> Blob
+- Shared files -> File
+- VM OS -> Disk
+- Orders -> Queue
+- User data -> Table
+
+## Final Flow
 
 ```text
-Blob → Files  
-Disk → VM  
-File → Shared  
-Queue → Messages  
-Table → NoSQL  
+Storage Account
+  -> Blob (Files)
+  -> File (Shared)
+  -> Queue (Messages)
+  -> Table (NoSQL)
+  -> Disk (VM)
 ```
 
----
+## Interview One-Liner
 
+A Storage Account in Azure hosts multiple storage services like Blob, File, Queue, Table, and Disk, each used for different data storage needs.
+
+## Quick Revision
+
+```text
+Blob -> Files
+Disk -> VM
+File -> Shared
+Queue -> Messages
+Table -> NoSQL
+```

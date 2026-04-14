@@ -1,160 +1,112 @@
-# 💽 What is Azure Disk Storage?
+# Azure Disk Storage
 
-### ✅ Definition
+## Overview
 
-**Azure Disk Storage** is a **block-level storage service** used to store data for Virtual Machines (VMs), such as the operating system, applications, and databases.
+Azure Disk Storage is a block-level storage service used to store data for Virtual Machines, including the operating system, applications, and databases.
 
----
+## Simple Understanding
 
-# 🧠 Simple Understanding
+- Disk Storage is the hard disk of your VM in the cloud.
 
-👉 Disk Storage = **Hard disk (HDD/SSD) of your VM in the cloud**
+## Types of Disks
 
----
+### OS Disk
 
-# 🧩 Types of Disks (Very Important 🔥)
+- Contains the operating system
+- Created automatically with the VM
 
----
+### Data Disk
 
-## 1️⃣ OS Disk
+- Extra storage attached to the VM
+- Used for databases, applications, and files
 
-* Contains **Operating System (Linux/Windows)**
-* Created automatically with VM
+### Temporary Disk
 
----
+- Provided by Azure
+- Not persistent, so data is lost after restart
 
-## 2️⃣ Data Disk
+## Performance Types
 
-* Extra storage attached to VM
-* Used for:
+### Standard HDD
 
-  * Databases
-  * Applications
-  * Files
+- Low cost
+- Low performance
+- Use for backup and archive
 
----
+### Standard SSD
 
-## 3️⃣ Temporary Disk
+- Medium performance
+- Use for web apps and dev/test
 
-* Provided by Azure (not persistent ❌)
-* Data lost after restart
+### Premium SSD
 
----
+- High performance
+- Low latency
+- Use for production apps and databases
 
-# ⚡ Disk Performance Types
+### Ultra Disk
 
----
+- Very high IOPS and throughput
+- Use for high-end databases
 
-## 🟡 1. Standard HDD
+## Key Concepts
 
-* Low cost
-* Low performance
-  👉 Use: Backup, archive
+### IOPS
 
----
+Number of read and write operations per second.
 
-## 🟠 2. Standard SSD
+### Throughput
 
-* Medium performance
-  👉 Use: Web apps, dev/test
+Amount of data transferred per second.
 
----
+### Latency
 
-## 🟢 3. Premium SSD (Most Used 🔥)
+Time taken to respond.
 
-* High performance
-* Low latency
-  👉 Use: Production apps, databases
+## Features
 
----
+- Managed disks
+- High availability
+- Encryption by default
+- Snapshots and backups
+- Scaling support
 
-## 🔴 4. Ultra Disk
+## Use Cases
 
-* Very high IOPS & throughput
-  👉 Use: High-end databases
+- Virtual Machines
+- Databases such as MySQL and SQL Server
+- High-performance applications
+- Enterprise workloads
 
----
+## Example
 
-# 📊 Key Concepts
+Web app VM mapping:
 
----
+- OS Disk -> Ubuntu
+- Data Disk -> Database storage
 
-## 🔹 IOPS
+## Important Points
 
-👉 Number of read/write operations per second
+- Persistent storage keeps data after reboot
+- Usually attached to one VM at a time
+- Performance depends on disk type
+- Faster than Blob, but usually more expensive
 
----
+## Blob vs Disk
 
-## 🔹 Throughput
+| Feature | Disk | Blob |
+| --- | --- | --- |
+| Type | Block storage | Object storage |
+| Use | VM storage | Files and media |
+| Access | Attached to VM | HTTP or HTTPS |
+| Performance | High | Medium |
 
-👉 Amount of data transferred (MB/s)
+## Interview One-Liner
 
----
+Azure Disk Storage provides high-performance block storage for Virtual Machines to store OS, applications, and data.
 
-## 🔹 Latency
+## Quick Memory Trick
 
-👉 Time taken to respond
-
----
-
-# 🔐 Features
-
-1. Managed disks (Azure handles storage)
-2. High availability
-3. Encryption by default
-4. Snapshots & backups
-5. Scaling support
-
----
-
-# 🚀 Use Cases
-
-1. Virtual Machines (OS + apps)
-2. Databases (MySQL, SQL Server)
-3. High-performance applications
-4. Enterprise workloads
-
----
-
-# 🏗️ Example
-
-👉 Web App VM:
-
-* OS Disk → Ubuntu
-* Data Disk → Database storage
-
----
-
-# ⚠️ Important Points
-
-1. Persistent storage (data stays after reboot)
-2. Attached to one VM at a time (mostly)
-3. Performance depends on disk type
-4. More expensive than Blob (but faster)
-
----
-
-# ⚖️ Blob vs Disk (Quick Difference)
-
-| Feature     | Disk           | Blob           |
-| ----------- | -------------- | -------------- |
-| Type        | Block storage  | Object storage |
-| Use         | VM storage     | Files/media    |
-| Access      | Attached to VM | HTTP/HTTPS     |
-| Performance | High           | Medium         |
-
----
-
-# 🎯 Interview One-Liner
-
-👉 **Azure Disk Storage provides high-performance block storage for Virtual Machines to store OS, applications, and data.**
-
----
-
-# 🚀 Quick Memory Trick
-
-```text id="8w3yhn"
-Disk = VM Hard Drive 💽
+```text
+Disk = VM Hard Drive
 ```
-
----

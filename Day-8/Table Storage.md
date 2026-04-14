@@ -1,65 +1,55 @@
-# 📊 What is Azure Table Storage?
+# Azure Table Storage
 
-### ✅ Definition
+## Overview
 
-**Azure Table Storage** is a **NoSQL key-value store** used to store large amounts of **structured, schema-less data**.
+Azure Table Storage is a NoSQL key-value store used to store large amounts of structured, schema-less data.
 
----
+## Simple Understanding
 
-# 🧠 Simple Understanding
+- Table Storage is like an Excel table without fixed columns.
 
-👉 Table Storage = **Excel-like table without fixed columns (flexible structure)**
+## Structure
 
----
-
-# 🧩 Structure (Very Important 🔥)
-
-```text id="2ng6rn"
+```text
 Storage Account
-     ↓
+   ↓
 Table
-     ↓
+   ↓
 Entity (Row)
-     ↓
+   ↓
 Properties (Columns)
 ```
 
----
+## Key Elements
 
-## 🔑 Key Elements
+### Table
 
-### 1️⃣ Table
+Collection of data.
 
-* Collection of data
+### Entity
 
-### 2️⃣ Entity (Row)
+Individual record.
 
-* Individual record
+### Properties
 
-### 3️⃣ Properties (Columns)
+Attributes of an entity.
 
-* Attributes of entity
+## Special Keys
 
----
+### Partition Key
 
-## 🔥 Special Keys (Important)
+- Groups data
+- Improves performance
 
-### 🔹 Partition Key
+### Row Key
 
-* Groups data
-* Improves performance
+- Unique identifier
 
-### 🔹 Row Key
+Together, they form the primary key.
 
-* Unique identifier
+## Example
 
-👉 Together → **Primary Key**
-
----
-
-## 📌 Example
-
-```text id="q8g4ch"
+```text
 Table: Users
 
 PartitionKey: India
@@ -68,105 +58,70 @@ Name: Khushal
 Age: 22
 ```
 
----
+## Key Features
 
-# ⚙️ Key Features
+- Schema-less
+- Highly scalable
+- Fast access through key-based lookup
+- Low cost
 
-1. **Schema-less**
+## Use Cases
 
-   * No fixed structure
+### Logs and Monitoring
 
-2. **Highly Scalable**
+Store application logs.
 
-   * Handles large data
+### Metadata Storage
 
-3. **Fast Access**
+Store file information and configs.
 
-   * Key-based lookup
+### IoT Data
 
-4. **Low Cost**
+Store sensor data.
 
----
+### User Profiles
 
-# 🚀 Use Cases
+Store user information.
 
----
+## Important Points
 
-## 1️⃣ Logs & Monitoring
+- Not relational, so no joins
+- Best for simple queries
+- Use PartitionKey wisely
+- Not suitable for complex queries
 
-* Store application logs
-
----
-
-## 2️⃣ Metadata Storage
-
-* Store file info, configs
-
----
-
-## 3️⃣ IoT Data
-
-* Sensor data storage
-
----
-
-## 4️⃣ User Profiles
-
-* Store user information
-
----
-
-# ⚠️ Important Points
-
-1. Not relational (no joins ❌)
-2. Best for simple queries
-3. Use PartitionKey wisely
-4. Not suitable for complex queries
-
----
-
-# ⚖️ Table vs SQL Database
+## Table vs SQL Database
 
 | Feature | Table Storage | SQL Database |
-| ------- | ------------- | ------------ |
-| Type    | NoSQL         | Relational   |
-| Schema  | Flexible      | Fixed        |
-| Query   | Simple        | Complex      |
-| Cost    | Low           | Higher       |
+| --- | --- | --- |
+| Type | NoSQL | Relational |
+| Schema | Flexible | Fixed |
+| Query | Simple | Complex |
+| Cost | Low | Higher |
 
----
+## Security
 
-# 🔐 Security
+- RBAC
+- Access keys
+- SAS tokens
+- Encryption
 
-1. RBAC
-2. Access keys
-3. SAS tokens
-4. Encryption
+## Real Example
 
----
+IoT system flow:
 
-# 🏗️ Real Example
+- Device sends data
+- Data is stored in Table Storage
+- PartitionKey -> Device ID
+- RowKey -> Timestamp
 
-👉 IoT System:
+## Interview One-Liner
 
-* Device sends data
-* Stored in Table Storage
-* PartitionKey → Device ID
-* RowKey → Timestamp
+Azure Table Storage is a NoSQL key-value store used to store large amounts of structured data with a flexible schema.
 
----
+## Quick Memory Trick
 
-# 🎯 Interview One-Liner
-
-👉 **Azure Table Storage is a NoSQL key-value store used to store large amounts of structured data with flexible schema.**
-
----
-
-# 🚀 Quick Memory Trick
-
-```text id="ntfryg"
-Table Storage = NoSQL Table 📊
+```text
+Table Storage = NoSQL Table
 ```
-
----
 

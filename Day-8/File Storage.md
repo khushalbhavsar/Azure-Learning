@@ -1,32 +1,26 @@
-# 📁 What is Azure File Storage?
+# Azure File Storage
 
-### ✅ Definition
+## Overview
 
-**Azure File Storage** is a **fully managed file sharing service** that allows you to create shared file systems in the cloud, accessible via standard protocols like **SMB (Windows)** and **NFS (Linux)**.
+Azure File Storage is a fully managed file sharing service that lets you create shared file systems in the cloud, accessible through SMB for Windows and NFS for Linux.
 
----
+## Simple Understanding
 
-# 🧠 Simple Understanding
+- File Storage is a shared folder or network drive for multiple VMs.
 
-👉 File Storage = **Shared folder (like Google Drive or network drive) for multiple VMs**
-
----
-
-# 🧩 Structure
+## Structure
 
 ```text
 Storage Account
-     ↓
+   ↓
 File Share
-     ↓
+   ↓
 Directories
-     ↓
+   ↓
 Files
 ```
 
----
-
-## 🔑 Example
+## Example
 
 ```text
 Storage Account: mystorage
@@ -34,119 +28,74 @@ File Share: sharedfiles
 File: report.pdf
 ```
 
----
+## Key Features
 
-# ⚙️ Key Features
+- Shared access for multiple VMs
+- SMB for Windows and NFS for Linux
+- Managed service with no server maintenance
+- Mountable like a local drive
 
-1. **Shared Access**
+## Use Cases
 
-   * Multiple VMs can access same files
+### Shared Storage
 
-2. **Protocols Supported**
+Multiple servers access the same files.
 
-   * SMB → Windows
-   * NFS → Linux
+### Lift-and-Shift Applications
 
-3. **Managed Service**
+Move on-premises apps to the cloud without major changes.
 
-   * No server maintenance
+### Backup and Storage
 
-4. **Mountable Drive**
+Store logs and reports.
 
-   * Appears like local disk
+### Dev/Test Environments
 
----
+Share code and configuration files.
 
-# 🚀 Use Cases
+## Security Features
 
----
+- RBAC
+- Storage keys and SAS tokens
+- Encryption by default
+- Private endpoints
 
-## 1️⃣ Shared Storage
+## Performance Tiers
 
-* Multiple servers access same files
+| Tier | Use |
+| --- | --- |
+| Standard | General use |
+| Premium | High performance |
 
----
+## Real Example
 
-## 2️⃣ Lift-and-Shift Applications
+Company setup:
 
-* Move on-prem apps to cloud without changes
+- Web VM and App VM both need the same files
+- Use File Storage and mount it as a shared drive
 
----
+## Important Points
 
-## 3️⃣ Backup & Storage
+- Works like a traditional file system
+- Can be mounted on multiple machines
+- Not ideal for very high-performance databases
+- Better for shared access than Blob Storage
 
-* Store logs, reports
+## File vs Blob vs Disk
 
----
+| Feature | File | Blob | Disk |
+| --- | --- | --- | --- |
+| Type | File system | Object | Block |
+| Access | SMB/NFS | HTTP | Attached to VM |
+| Use | Shared files | Media | VM storage |
 
-## 4️⃣ Dev/Test Environments
+## Interview One-Liner
 
-* Share code/config files
+Azure File Storage provides fully managed shared file systems in the cloud accessible through SMB and NFS for multiple machines.
 
----
-
-# 🔐 Security Features
-
-1. RBAC (access control)
-2. Storage keys & SAS tokens
-3. Encryption (default)
-4. Private endpoints
-
----
-
-# ⚡ Performance Tiers
-
-| Tier     | Use              |
-| -------- | ---------------- |
-| Standard | General use      |
-| Premium  | High performance |
-
----
-
-# 🏗️ Real Example
-
-👉 Company setup:
-
-* Web VM + App VM
-* Both need same files
-
-👉 Solution:
-
-* Use File Storage
-* Mount as shared drive
-
----
-
-# ⚠️ Important Points
-
-1. Works like traditional file system
-2. Can be mounted on multiple machines
-3. Not for very high-performance DB (use Disk)
-4. Better for shared access than Blob
-
----
-
-# ⚖️ File vs Blob vs Disk
-
-| Feature | File         | Blob   | Disk           |
-| ------- | ------------ | ------ | -------------- |
-| Type    | File system  | Object | Block          |
-| Access  | SMB/NFS      | HTTP   | Attached to VM |
-| Use     | Shared files | Media  | VM storage     |
-
----
-
-# 🎯 Interview One-Liner
-
-👉 **Azure File Storage provides fully managed shared file systems in the cloud accessible via SMB/NFS for multiple machines.**
-
----
-
-# 🚀 Quick Memory Trick
+## Quick Memory Trick
 
 ```text
-File Storage = Shared Folder 📁
+File Storage = Shared Folder
 ```
-
----
 
