@@ -1,8 +1,5 @@
 # ⚖️ What is Azure Load Balancer?
 
-![Image](https://images.openai.com/static-rsc-4/pPkAySQtD6ICfrqPl4gdI8uqMkf7CjahhhXNrJVDepPz-MngC4i-KOfRYgw0AD6joMvqCbUzkHzTOVu4zFQ2wUx5GQPjErh3_CWqunPMVUq3tzLl1lR7xHPJlfjTX_bnARL-M-2ky1EEb4NadPuqS3KbF8ZZUK8ez9TsoPbhX_ULf8kR6iAj5wr8xNyR_2fr?purpose=fullsize)
-
-
 ### ✅ Definition
 
 **Azure Load Balancer** is a Layer 4 (Transport layer) service that distributes incoming and outgoing network traffic across multiple virtual machines to ensure high availability and reliability.
@@ -347,7 +344,7 @@ Azure Load Balancer Types:
 
 # ⚙️ How It Works (Flow)
 
-```id="z2qz8o"
+```text
 User → Public IP → Load Balancer → Backend Pool (VMs)
 ```
 
@@ -359,7 +356,7 @@ User → Public IP → Load Balancer → Backend Pool (VMs)
 
 ## 🟢 Step 1️⃣ Create Resource Group
 
-```bash id="zkm41l"
+```bash
 az group create --name myRG --location centralindia
 ```
 
@@ -367,7 +364,7 @@ az group create --name myRG --location centralindia
 
 ## 🟢 Step 2️⃣ Create Public IP
 
-```bash id="f24b6g"
+```bash
 az network public-ip create \
   --resource-group myRG \
   --name myPublicIP \
@@ -378,7 +375,7 @@ az network public-ip create \
 
 ## 🟢 Step 3️⃣ Create Load Balancer
 
-```bash id="42h5py"
+```bash
 az network lb create \
   --resource-group myRG \
   --name myLoadBalancer \
@@ -392,7 +389,7 @@ az network lb create \
 
 ## 🟢 Step 4️⃣ Create Health Probe
 
-```bash id="j7w8ux"
+```bash
 az network lb probe create \
   --resource-group myRG \
   --lb-name myLoadBalancer \
@@ -405,7 +402,7 @@ az network lb probe create \
 
 ## 🟢 Step 5️⃣ Create Load Balancing Rule
 
-```bash id="5h24gg"
+```bash
 az network lb rule create \
   --resource-group myRG \
   --lb-name myLoadBalancer \
@@ -422,7 +419,7 @@ az network lb rule create \
 
 ## 🟢 Step 6️⃣ Add VMs to Backend Pool
 
-```bash id="vl7tr6"
+```bash
 az network nic ip-config address-pool add \
   --address-pool myBackEndPool \
   --ip-config-name ipconfig1 \
@@ -471,7 +468,7 @@ az network nic ip-config address-pool add \
 
 # 🚀 Quick Revision
 
-```id="y7yq9q"
+```text
 Frontend IP → Load Balancer → Backend Pool → Health Probe → Rule
 ```
 
